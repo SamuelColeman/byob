@@ -1,4 +1,5 @@
 let teams = 
+[
 	{
 	id: 2005,
 	school: "Air Force",
