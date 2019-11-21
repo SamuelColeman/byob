@@ -5,13 +5,15 @@ exports.up = function(knex) {
   		table.string('school');
   		table.string('mascot');
   		table.string('conference');
-
+  
   		table.timestamps(true, true);
   	}),
   	knex.schema.createTable('conferences', (table) => {
   		table.increments('id').primary();
   		table.string('abbreviation');
-  		table.foreign('name').references('teams.conference');
+  		table.string('conference');
+  		table.integer('team_id').unsigned();
+  		table.foreign('team_id').references('teams.id');
 
   		table.timestamps(true, true);
   	})
