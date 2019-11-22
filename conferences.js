@@ -127,13 +127,6 @@ let conferences =
 	teams: []
 	},
 	{
-	id: 208,
-	name: "Missouri Valley",
-	short_name: "Missouri Valley Conference",
-	abbreviation: "MVC",
-	teams: []
-	},
-	{
 	id: 209,
 	name: "Mountain State",
 	short_name: "Mountain State Athletic Conference",

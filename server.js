@@ -19,4 +19,4 @@ app.get('/api/v1/teams', (request, response) => {
 
 app.listen(app.get('port'), () => {
 	console.log(`App is running on ${app.get('port')}`)
-})
+});

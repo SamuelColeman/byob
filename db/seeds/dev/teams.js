@@ -3,43 +3,40 @@ const conferences = require('../../../conferences');
 
 const createConference = (knex, conference) => {
   return knex('conferences').insert({
-    name: conference.name
+    name: conference.name,
     abbreviation: conference.abbreviation
-  }, '')
-  .then(conferenceId => {
+  }, 'name')
+  .then(name => {
     let teamPromises = [];
 
-    teams.forEach(team => {
-      teamPromises.push(createTeam(knex, {
-
-      }))
-    })
-
-    paper.footnotes.forEach(footnote => {
-      footnotePromises.push(createFootnote(knex, {
-        note: footnote,
-        paper_id: paperId[0]
-      }))
-    })
-    return Promise.all(footnotePromises);
+    teams.filter(team => team.conference === name[0])
+      .forEach(team => {
+        teamPromises.push(createTeam(knex, {
+          school: team.school,
+          mascot: team.mascot,
+          conference: name[0]
+        }))
+      })
+    return Promise.all(teamPromises);
   })
 };
 
-const createFootnote = (knex, footnote) => {
-  return knex('footnotes').insert(footnote);
+const createTeam = (knex, team) => {
+  console.log(team);
+  return knex('teams').insert(team);
 };
 
 exports.seed = (knex) => {
   return knex('teams').del() 
     .then(() => knex('conferences').del())
     .then(() => {
-      let paperPromises = [];
+      let conferencePromises = [];
 
-      papersData.forEach(paper => {
-        paperPromises.push(createPaper(knex, paper));
+      conferences.forEach(conference => {
+        conferencePromises.push(createConference(knex, conference));
       });
 
-      return Promise.all(paperPromises);
+      return Promise.all(conferencePromises);
     })
     .catch(error => console.log(`Error seeding data: ${error}`));
 };

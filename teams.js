@@ -2211,4 +2211,4 @@ let teams =
 	]
 	}
 ]
-module.exports teams; 
+module.exports = teams; 
