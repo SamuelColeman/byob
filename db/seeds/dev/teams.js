@@ -22,7 +22,6 @@ const createConference = (knex, conference) => {
 };
 
 const createTeam = (knex, team) => {
-  console.log(team);
   return knex('teams').insert(team);
 };
 
