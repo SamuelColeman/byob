@@ -28,38 +28,37 @@ app.get('/api/v1/conferences', (request, response) => {
 });
 
 app.get('/api/v1/teams/:id', (request, response) => {
-  const { id } = request.params;
-  database('teams')
-    .where({ id: id })
-    .then(team => {
-      if (team.length === 0) {
-        response.status(404).json({ error: 'No Team Found' });
+  database('teams').where('id', request.params.id).select()
+    .then(teams => {
+      if (teams.length) {
+        response.status(200).json(teams);
+      } else {
+        response.status(404).json({ 
+          error: `Could not find team with id: ${request.params.id}`
+        });
       }
-      response.status(200).json(team[0]);
     })
     .catch(error => {
       response.status(500).json({ error });
     });
 });
 
-<<<<<<< HEAD
 app.get('/api/v1/conferences/:id', (request, response) => {
-  const { id } = request.params;
-  database('conferences')
-    .where({ id: id })
-    .then(conference => {
-      if (conference.length === 0) {
-        response.status(404).json({ error: 'No Conference Found' });
+  database('conferences').where('id', request.params.id).select()
+    .then(conferences => {
+      if (conferences.length) {
+        response.status(200).json(conferences);
+      } else {
+        response.status(404).json({ 
+          error: `Could not find conference with id: ${request.params.id}`
+        });
       }
-      response.status(200).json(conference[0]);
     })
     .catch(error => {
       response.status(500).json({ error });
     });
 });
 
-=======
->>>>>>> 7cb4bd840998501113bd512c209f2ef65853c00b
 app.listen(app.get('port'), () => {
 	console.log(`App is running on ${app.get('port')}`)
 });
