@@ -17,7 +17,7 @@ app.get('/api/v1/teams', (request, response) => {
     })
     .catch((error) => {
       response.status(500).json({ error });
-    });
+    })
 });
 
 app.get('/api/v1/conferences', (request, response) => {
@@ -27,7 +27,7 @@ app.get('/api/v1/conferences', (request, response) => {
     })
     .catch((error) => {
       response.status(500).json({ error });
-    });
+    })
 });
 
 app.get('/api/v1/teams/:id', (request, response) => {
@@ -38,12 +38,12 @@ app.get('/api/v1/teams/:id', (request, response) => {
       } else {
         response.status(404).json({ 
           error: `Could not find team with id: ${request.params.id}`
-        });
+        })
       }
     })
     .catch(error => {
       response.status(500).json({ error });
-    });
+    })
 });
 
 app.get('/api/v1/conferences/:id', (request, response) => {
@@ -54,12 +54,12 @@ app.get('/api/v1/conferences/:id', (request, response) => {
       } else {
         response.status(404).json({ 
           error: `Could not find conference with id: ${request.params.id}`
-        });
+        })
       }
     })
     .catch(error => {
       response.status(500).json({ error });
-    });
+    })
 });
 
 app.post('/api/v1/teams', (request, response) => {
@@ -78,7 +78,7 @@ app.post('/api/v1/teams', (request, response) => {
     })
     .catch(error => {
       response.status(500).json({ error });
-    });
+    })
 });
 
 app.post('/api/v1/conferences', (request, response) => {
@@ -97,7 +97,23 @@ app.post('/api/v1/conferences', (request, response) => {
     })
     .catch(error => {
       response.status(500).json({ error });
-    });
+    })
+});
+
+app.delete('/api/v1/teams/:id', (request, response) => {
+	database('teams').where('id', request.params.id).select().del()
+   	.then(team => {
+    	if (team) {
+        response.status(200).json(`Team ${request.params.id} deleted`);
+      } else {
+        response.status(404).json({ 
+          error: `Could not find team with id: ${request.params.id}`
+        })
+      }
+    })
+    .catch(error => {
+    	response.status(500).json({ error });
+    })
 });
 
 app.listen(app.get('port'), () => {
