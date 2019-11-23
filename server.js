@@ -42,6 +42,7 @@ app.get('/api/v1/teams/:id', (request, response) => {
     });
 });
 
+<<<<<<< HEAD
 app.get('/api/v1/conferences/:id', (request, response) => {
   const { id } = request.params;
   database('conferences')
@@ -57,6 +58,8 @@ app.get('/api/v1/conferences/:id', (request, response) => {
     });
 });
 
+=======
+>>>>>>> 7cb4bd840998501113bd512c209f2ef65853c00b
 app.listen(app.get('port'), () => {
 	console.log(`App is running on ${app.get('port')}`)
 });
