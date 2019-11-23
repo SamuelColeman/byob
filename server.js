@@ -81,6 +81,25 @@ app.post('/api/v1/teams', (request, response) => {
     });
 });
 
+app.post('/api/v1/conferences', (request, response) => {
+  const conference = request.body;
+  for (let requiredParameter of ['name', 'abbreviation']) {
+    if (!conference[requiredParameter]) {
+      return response
+        .status(422)
+        .send({ error: `Expected format: { name: <String>, abbreviation: <String> }. You're missing a "${requiredParameter}" property.` });
+    }
+  }
+
+  database('conferences').insert(conference, 'id')
+    .then(conference => {
+      response.status(201).json({ id: conference[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
 app.listen(app.get('port'), () => {
 	console.log(`App is running on ${app.get('port')}`)
 });
