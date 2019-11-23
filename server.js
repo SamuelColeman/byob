@@ -17,6 +17,16 @@ app.get('/api/v1/teams', (request, response) => {
     });
 });
 
+app.get('/api/v1/conferences', (request, response) => {
+  database('conferences').select()
+    .then((conferences) => {
+      response.status(200).json(conferences);
+    })
+    .catch((error) => {
+      response.status(500).json({ error });
+    });
+});
+
 app.listen(app.get('port'), () => {
 	console.log(`App is running on ${app.get('port')}`)
 });
