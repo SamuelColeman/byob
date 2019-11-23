@@ -10,6 +10,14 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.json());
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+};
+
+app.get('*', (request, response) => {
+	response.sendFile(path.join('server.js', 'client/build', 'index.html'));
+});
+
 app.get('/api/v1/teams', (request, response) => {
   database('teams').select()
     .then((teams) => {
