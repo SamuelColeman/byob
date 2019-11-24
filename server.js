@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(byob + '/api/v1/teams'));
 
 app.get('/', (request, response) => {
-  res.status(200).send('It works')
+  response.status(200).send('It works')
 });
 
 app.get('/api/v1/teams', (request, response) => {
