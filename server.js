@@ -11,12 +11,20 @@ const configuration = require('./knexfile')[environment];
 // Assigns the correct environment stage from our knexfile to configuration variable
 const database = require('knex')(configuration);
 // Uses new configuration variable to fetch the correct database configuration and assigns it to database variable
+const path = require('path');
+// Imports path to be used for sending the html file to the default route
 
 app.set('port', process.env.PORT || 3000);
 // Establishes a port for our server to be run on, defaults to 3000
 
 app.use(bodyParser.json());
 // Parses our body data to an acceptable format for posting and deleting methods
+
+app.get('/', (request, response) => {
+  // Runs when a get request is made on localhost:3000/ and opens callback function with request and response parameters
+  response.sendFile(path.join(__dirname+'/index.html'));
+  // Locates and sends the index.html file to display as a response to the get method being run on '/' 
+});
 
 app.get('/api/v1/teams', (request, response) => {
   // Runs when a get request is made on localhost:3000/api/v1/teams and opens callback function with request and response parameters
