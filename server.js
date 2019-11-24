@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
@@ -9,6 +10,8 @@ const database = require('knex')(configuration);
 app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
 
 app.get('/api/v1/teams', (request, response) => {
   database('teams').select()
