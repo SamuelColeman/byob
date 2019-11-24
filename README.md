@@ -1,5 +1,9 @@
 # College Football API
 
+An API for retrieving and manipulating data on college football teams and conferences in the FBS.
+
+[Link To Projects](https://github.com/SamuelColeman/byob/projects/1)
+
 ## List All Teams
 
 A successful response returns an array of all college football teams in the FBS.
