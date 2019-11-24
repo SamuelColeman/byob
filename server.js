@@ -12,7 +12,6 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.json());
 
-
 app.get('/', (request, response) => {
   response.sendFile(path.join(__dirname+'/index.html'));
 });
