@@ -9,11 +9,11 @@ const database = require('knex')(configuration);
 app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/api/v1/teams'));
+// app.use(express.static(__dirname + '/api/v1/teams'));
 
-// app.get('/', (request, response) => {
-//   response.status(200).send('It works')
-// });
+app.get('/', (request, response) => {
+  response.status(200).send('It works')
+});
 
 app.get('/api/v1/teams', (request, response) => {
   database('teams').select()
