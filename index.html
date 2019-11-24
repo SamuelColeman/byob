@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>College Football Api</title>
+</head>
+<body>
+	<h1>College Football Api</h1>
+	<h2>Team Parameters:</h2>
+	<p>{ id: integer, unique identifier of the team,
+			school: string, name of the university,
+ 			mascot: string, school's mascot name,
+			conference: string, name of the conference in which the school belongs }</p>
+	<h2>Conference Parameters:</h2>
+	<p>{ id: integer, unique identifier of the conference,
+			name: string, official name of the conference,
+ 			mascot: string, abbreviated name of the conference }</p>
+	<h2>List All Teams:</h2>
+	<p>A successful response returns an array of all college football teams in the FBS.</p>
+	<h3>GET /api/v1/teams</h3>
+	<h3>Response Example:</h3>
+	<p>[ 
+      { "id": 131, "school": "Example School", "mascot": "Fish", "conference": "ACC" },
+      { "id": 132, "school": "Example University", "mascot": "Bear", "conference": "SEC" }
+      ]</p>
+	<h2>List All Conferences:</h2>
+	<p>A successful response returns an array of all college football conferences in the FBS.</p>
+	<h3>GET /api/v1/conferences</h3>
+	<h3>Response Example:</h3>
+	<p>[ 
+      { "id": 34, "name": "Example Conference", "abbreviation": "EC" },
+      { "id": 35, "name": "Southern Example", "abbreviation": "" }
+     ]</p>
+	<h2>Display Specific Team:</h2>
+	<p>A successful response returns data for a certain college football team selected by id.</p>
+	<h3>GET /api/v1/teams/:id</h3>
+	<h3>Response Example:</h3>
+	<p>{ "id": 131, "school": "Example School", "mascot": "Fish", "conference": "ACC" }</p>
+	<h2>Display Specific Conference:</h2>
+	<p>A successful response returns data for a certain college football conference selected by id.</p>
+	<h3>GET /api/v1/conferences/:id</h3>
+	<h3>Response Example:</h3>
+	<p>{ "id": 34, "name": "Example Conference", "abbreviation": "EC" }</p>
+	<h2>Add New Team:</h2>
+	<p>A successful response returns the id of the new team that was just added.</p>
+	<h3>POST /api/v1/teams</h3>
+	<h3>Response Example:</h3>
+	<p>{ "id": 131 }</p>
+	<h3>Required Body Example:</h3>
+	<p>{ "school": "Example School", "mascot": "Fish", "conference": "ACC" }</p>
+	<h2>Add New Conference:</h2>
+	<p>A successful response returns the id of the new conference that was just added.</p>
+	<h3>POST /api/v1/conferences</h3>
+	<h3>Response Example:</h3>
+	<p>{ "name": "Example Conference", "abbreviation": "EC" }</p>
+	<h3>Required Body Example:</h3>
+	<p>{ "id": 34 }</p>
+	<h2>Remove Existing Team:</h2>
+	<p>A successful response returns a message confirming that the team matching the provided id was deleted.</p>
+	<h3>DELETE /api/v1/teams/:id</h3>
+	<h3>Response Example:</h3>
+	<p>Team 25 deleted</p>
+</body>
+</html>
