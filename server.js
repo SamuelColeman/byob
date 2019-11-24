@@ -5,14 +5,16 @@ const bodyParser = require('body-parser');
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
+const path = require('path');
+const router = express.Router();
 
 app.set('port', process.env.PORT || 3000);
 
 app.use(bodyParser.json());
-// app.use(express.static(__dirname + '/api/v1/teams'));
 
-app.get('/', (request, response) => {
-  response.status(200).send('It works')
+
+router.get('/', (request, response) => {
+  response.sendFile(path.join(__dirname+'/index.html'));
 });
 
 app.get('/api/v1/teams', (request, response) => {
